@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="meuApp" ng-controller="salarioReajuste">
+    <h1>Calculo de custo de fábrica.</h1>
+    <div>
+        <label for="custoFinal">Insira o custo de fábrica do carro:</label>
+        <div>
+            <input type="text" ng-model="custoFabrica" id="custoFabrica" placeholder="R$(00.00)">
+        </div>
+    </div>
+
+    <div>
+        <button value="calcular" ng-click="calcular()">CALCULAR</button>
+        <p>Custo final: R${{ resultadoCustoFinal }}</p>
+        <p>Valor pago de impostos: R$  {{ valorImposto }} </p>
+        <p>Valor pago de comissão do distribuidor: R$ {{ valorDistribuidor }} </p>
+    </div>
+
+</div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+        app.controller("salarioReajuste",function($scope){
+            $scope.calcular = function(){
+                
+                $scope.valorImposto =Math.round($scope.custoFabrica * 0.45);
+                $scope.valorDistribuidor =Math.round($scope.custoFabrica * 0.28);
+                $scope.resultadoCustoFinal =Math.round(+$scope.custoFabrica +  +$scope.valorImposto + +$scope.valorDistribuidor);
+                
+            }
+        });  
+
+    </script>
+
+</body>
+</html>

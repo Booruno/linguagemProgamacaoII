@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="meuApp" ng-controller="numeroDeCarros">
+    <h1>Calcular sálario final do vendedor.</h1>
+    <div>
+        <label for="salarioMensal">Insira o numero de carros vendidos:</label>
+        <div>
+            <input type="text" ng-model="numeroCarrosVendidos" id="numeroCarrosVendidos" placeholder="R$(00.00)">
+        </div>
+    </div>
+
+    <div>
+        <label for="reajuste">Insira o valor total de vendas:</label>
+        <div>
+            <input type="text" ng-model="valorTotalVendas" id="valorTotalVendas" placeholder="%">
+        </div>
+    </div>
+
+    <div>
+        <label for="reajuste">Insira o salário fixo:</label>
+        <div>
+            <input type="text" ng-model="salarioFixo" id="salarioFixo" placeholder="%">
+        </div>
+    </div>
+
+    <div>
+        <label for="reajuste">Valor recebido por carro vendido:</label>
+        <div>
+            <input type="text" ng-model="valorCarroVendido" id="valorCarroVendido" placeholder="%">
+        </div>
+    </div>
+
+    <div>
+        <button value="calcular" ng-click="calcular()">CALCULAR</button>
+        <p>Salário final vendedor: R${{resultadoSalFinal}}</p>
+        
+    </div>
+
+</div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+        app.controller("numeroDeCarros",function($scope){
+            $scope.calcular = function(){
+
+                $scope.comissaoValorVendas = (+$scope.valorTotalVendas*0.05);
+                $scope.comissaoFixaVendidos = (+$scope.valorCarroVendido* +$scope.numeroCarrosVendidos);
+                $scope.resultadoSalFinal = (+$scope.salarioFixo + +$scope.comissaoFixaVendidos + +$scope.comissaoValorVendas);
+                
+            }
+        });  
+
+    </script>
+
+</body>
+</html>

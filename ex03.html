@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="meuApp" ng-controller="meuCtrller">
+    <div><h1>Calculo de votos por municipio</h1></div>
+    
+    <div><label for="municipio">Insira o total de eleitores do municipio:</label></div>
+    <div><input type="text" ng-model="eleitoresMunicipio" id="eleitoresMunicipio" placeholder="Ex: 1"></div>
+
+    <div><label for="votosBrancos">Insira o total de votos em branco.</label></div>
+    <div><input type="text" ng-model="votosBrancos" id="votosBrancos" placeholder="Ex: 2"></div>
+
+    <div><label for="votosNulos">Insira o total de votos nulos.</label></div>
+    <div><input type="text" ng-model="votosNulos" id="votosNulos" placeholder="Ex: 3"></div>
+
+    <div><label for="votosValidos">Insira o total de votos válidos.</label></div>
+    <div><input type="text" ng-model="votosValidos" id="votosValidos" placeholder="Ex: 4"></div>
+    <div><input type="button" value="CALCULAR" ng-click="calcular()"></div>
+    
+
+    <div>
+        <div><h2>Percentual de votos em relação ao numero total de eleitores.</h2></div>
+        <p>Percentual de votos em branco: {{ resultadoVotosBrancos }} </p>
+        <p>Percentual de votos nulos: {{ resultadoVotosNulos }} </p>
+        <p>Percentual de votos em branco: {{ resultadoVotosValidos }} </p>
+        
+    </div>
+
+</div>
+
+<script>
+        
+        var app = angular.module("meuApp", []);
+        app.controller("meuCtrller",function($scope){
+            $scope.calcular = function(){
+                $scope.resultadoVotosBrancos = ((100*$scope.votosBrancos)/$scope.eleitoresMunicipio) + "%"; 
+                $scope.resultadoVotosNulos = ((100*$scope.votosNulos)/$scope.eleitoresMunicipio) + "%"; 
+                $scope.resultadoVotosValidos = ((100*$scope.votosValidos)/$scope.eleitoresMunicipio) + "%";    
+        }});  
+    </script>
+
+</body>
+</html>
