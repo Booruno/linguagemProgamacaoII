@@ -3,14 +3,21 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <body>
 
-<div ng-app="">
+<div ng-app="meuApp" ng-controller="antecessor">
     <label for="Valor">Digite o valor:</label>
-    <input type="text" ng-model="valor">
-</div>
-<div>
-    <p>Antecessor: {{antecessor}}</p>
+    <div><input type="text" ng-model="valor" id="valor" placeholder="Ex: 10"></div>
+    <div><button value="calcular" ng-click="calcular()">Mostrar numero antecessor</button></div>
+    <div><p>Antecessor: {{antecessor}}</p></div>
 </div>
 
+<script>
+        var app = angular.module("meuApp", []);
+        app.controller("antecessor",function($scope){
+            $scope.calcular = function(){
+                $scope.antecessor = ($scope.valor - 1);          
+        }});  
+
+    </script>
 
 </body>
 </html>
