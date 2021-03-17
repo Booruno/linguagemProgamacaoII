@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="meuApp" ng-controller="salarioTotal">
+    <h1>Calcular sálario final do vendedor.</h1>
+    <div>
+        <label for="salarioFixo">Salário fixo:</label>
+        <div>
+            <input type="text" ng-model="salarioFixo" id="salarioFixo" placeholder="R$(00.00)">
+        </div>
+    </div>
+
+    <div>
+        <label for="valorVendas">Valor das vendas efetuadas:</label>
+        <div>
+            <input type="text" ng-model="valorVendas" id="valorVendas" placeholder="R$(00.00)">
+        </div>
+    </div>
+
+   
+    <div>
+        <button value="calcular" ng-click="calcular()">CALCULAR</button>
+        <p>Salário final: R${{resultadoSalFinal}}</p>
+        
+    </div>
+
+</div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+        app.controller("salarioTotal",function($scope){
+            $scope.calcular = function(){
+                if($scope.valorVendas <= 1500){
+                    $scope.resultadoSalFinal = (+$scope.salarioFixo + (+$scope.valorVendas * 0.03));
+                }else{
+                    $scope.comissaoTres =  (1500 * 0.03)
+                    $scope.comissaoCinco = ((+$scope.valorVendas - 1500) * 0.05);
+                    $scope.resultadoSalFinal = +$scope.salarioFixo + +$scope.comissaoTres + +$scope.comissaoCinco;
+                    
+                    }
+                 
+                
+                
+            }
+        });  
+
+    </script>
+
+</body>
+</html>

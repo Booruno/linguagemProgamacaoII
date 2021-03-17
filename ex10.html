@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="meuApp" ng-controller="qtd">
+    <h1>Produto</h1>
+    <div>
+        <label for="qtdAtualEstoque">Quantidade atual em estoque:</label>
+        <div>
+            <input type="text" ng-model="qtdAtualEstoque" id="qtdAtualEstoque" placeholder="">
+        </div>
+    </div>
+
+    <div>
+        <label for="qtdMaxEstoque">Quantidade maxima em estoque::</label>
+        <div>
+            <input type="text" ng-model="qtdMaxEstoque" id="qtdMaxEstoque" placeholder="">
+        </div>
+    </div>
+
+    <div>
+        <label for="qtdMinEstoque">Quantidade minima em estoque::</label>
+        <div>
+            <input type="text" ng-model="qtdMinEstoque" id="qtdMinEstoque" placeholder="">
+        </div>
+    </div>
+
+  
+    <div>
+        <button value="calcular" ng-click="calcular()">CALCULAR</button>
+        <p>Quantidade media do estoque: {{qtdMedia}}</p>
+        <p>{{mensagem}}</p>
+        
+    </div>
+
+</div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+        app.controller("qtd",function($scope){
+            $scope.calcular = function(){
+               
+              $scope.qtdMedia = ((+$scope.qtdMaxEstoque + +$scope.qtdMinEstoque) /2);
+              if($scope.qtdAtualEstoque >= $scope.qtdMedia){
+                  $scope.mensagem = "Nao efetuar compra."
+                
+            }else{
+                $scope.mensagem = "Efetuar compra."
+            }
+                 
+                
+                
+            }
+        });  
+
+    </script>
+
+</body>
+</html>

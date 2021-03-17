@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="meuApp" ng-controller="qtd">
+    <h1>Time vencedor</h1>
+    <div>
+        <label for="timeUm">Time um:</label>
+        <div>
+            <input type="text" ng-model="timeUm" id="timeUm" placeholder="">
+        </div>
+        
+        <label for="golsMarcadosUm">Gols marcados:</label>
+        <div>
+            <input type="text" ng-model="golsMarcadosUm" id="golsMarcadosUm" placeholder="">
+        </div>
+    </div>
+
+    <div>
+        <label for="timeDois">Time dois::</label>
+        <div>
+            <input type="text" ng-model="timeDois" id="timeDois" placeholder="">
+        </div>
+        <label for="golsMarcadosDois">Gols marcados:</label>
+        <div>
+            <input type="text" ng-model="golsMarcadosDois" id="golsMarcadosDois" placeholder="">
+        </div>
+    </div>
+
+    
+
+  
+    <div>
+        <button value="calcular" ng-click="calcular()">CALCULAR</button>
+        <p>Resultado: {{resultado}}</p>
+    </div>
+
+</div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+        app.controller("qtd",function($scope){
+            $scope.calcular = function(){
+               
+             if($scope.golsMarcadosUm > $scope.golsMarcadosDois){
+                $scope.resultado = $scope.timeUm;
+             }else if($scope.golsMarcadosDois > $scope.golsMarcadosUm){
+                $scope.resultado = $scope.timeDois;
+             }else{
+                 $scope.resultado = "Empate";
+             }
+            }
+        });  
+
+    </script>
+
+</body>
+</html>

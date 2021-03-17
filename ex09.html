@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="meuApp" ng-controller="saldo">
+    <h1>Calcular saldo</h1>
+    <div>
+        <label for="numeroConta">Numero da conta:</label>
+        <div>
+            <input type="text" ng-model="numeroConta" id="numeroConta" placeholder="">
+        </div>
+    </div>
+
+    <div>
+        <label for="saldoConta">Saldo:</label>
+        <div>
+            <input type="text" ng-model="saldoConta" id="saldoConta" placeholder="R$(00.00)">
+        </div>
+    </div>
+
+    <div>
+        <label for="debitoConta">Débito:</label>
+        <div>
+            <input type="text" ng-model="debitoConta" id="debitoConta" placeholder="R$(00.00)">
+        </div>
+    </div>
+
+    <div>
+        <label for="creditoConta">Débito:</label>
+        <div>
+            <input type="text" ng-model="creditoConta" id="creditoConta" placeholder="R$(00.00)">
+        </div>
+    </div>
+
+   
+    <div>
+        <button value="calcular" ng-click="calcular()">CALCULAR</button>
+        <p>Saldo Atual: R${{saldoAtual}}</p>
+        <p>{{mensagem}}</p>
+        
+    </div>
+
+</div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+        app.controller("saldo",function($scope){
+            $scope.calcular = function(){
+               
+                $scope.saldoAtual = +$scope.saldoConta - +$scope.debitoConta + +$scope.creditoConta; 
+                  if($scope.saldoAtual >= 0)
+                        $scope.mensagem = "Saldo Positivo";
+                        else{
+                            $scope.mensagem="Saldo Negativo";
+                        }
+                 
+                
+                
+            }
+        });  
+
+    </script>
+
+</body>
+</html>

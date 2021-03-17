@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="meuApp" ng-controller="numeros">
+    <h1>Numeros crescentes.</h1>
+    <div>
+        <label for="numUm">Numero um:</label>
+        <div>
+            <input type="text" ng-model="numUm" id="numUm" placeholder="44">
+        </div>
+    </div>
+
+    <div>
+        <label for="numDois">Numero dois:</label>
+        <div>
+            <input type="text" ng-model="numDois" id="numDois" placeholder="22">
+        </div>
+    </div>
+
+    <div>
+        <label for="numTres">Numero dois:</label>
+        <div>
+            <input type="text" ng-model="numTres" id="numTres" placeholder="10">
+        </div>
+    </div>
+    
+    
+    <div>
+        <button value="calcular" ng-click="calcular()">CALCULAR</button>
+        <p>Numeros em ordem crescente:{{numeros}}</p>
+        
+    </div>
+   
+</div>
+    
+    <script>
+        var app = angular.module("meuApp", []);
+        app.controller("numeros",function($scope){
+            $scope.calcular = function(){
+                $scope.numeros = [$scope.numUm, $scope.numDois, $scope.numTres];
+                $scope.numeros.sort(function(x, y){return x-y});
+                   
+            }
+        });  
+
+    </script>
+
+</body>
+</html>

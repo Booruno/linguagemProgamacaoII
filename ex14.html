@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="meuApp" ng-controller="produto">
+    
+    <div>
+        <label for="descProduto">Descrição produto:</label>
+        <div>
+            <input type="text" ng-model="descProduto" id="descProduto" placeholder="">
+        </div>
+    </div>
+
+    <div>
+        <label for="qtdAdiquirida">Quantidade adiquirida:</label>
+        <div>
+            <input type="text" ng-model="qtdAdiquirida" id="qtdAdiquiridav" placeholder="">
+        </div>
+    </div>
+
+    <div>
+        <label for="precoUnd">Preço unitário</label>
+        <div>
+            <input type="text" ng-model="precoUnd" id="precoUnd" placeholder="">
+        </div>
+    </div>
+    
+  
+    <div>
+        <button value="calcular" ng-click="calcular()">CALCULAR</button>
+        <p>Total: {{total}}</p>
+        <p>Desconto: {{desconto}}</p>
+        <p>Total a pagar: {{totalPagar}}</p>
+    </div>
+
+</div>
+
+    <script>
+        var app = angular.module("meuApp", []);
+        app.controller("produto",function($scope){
+            $scope.calcular = function(){
+                $scope.total = ($scope.qtdAdiquirida * $scope.precoUnd);
+                
+                if($scope.qtdAdiquirida <= 5){
+                    $scope.desconto = ($scope.total * 0.02); 
+                }else if($scope.qtdAdiquirida <=10){
+                    $scope.desconto = ($scope.total * 0.03); 
+                }else{
+                    $scope.desconto = ($scope.total * 0.05); 
+                }
+                $scope.totalPagar = ($scope.total - $scope.desconto);
+            }
+        });  
+
+    </script>
+
+</body>
+</html>
